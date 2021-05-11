@@ -8,5 +8,6 @@ import React, { useEffect, useState, Fragment } from "react";
  */
 
 export default function NewReservation(){
-    return <Fragment>Test</Fragment>
+    
+    return (<Fragment>Test</Fragment>)
 }
