@@ -5,6 +5,12 @@ function list(){
     .select("*")
 }
 
+function post(reservation){
+    return knex("reservations as r")
+    .insert(reservation, "*")
+}
+
 module.exports = {
     list,
+    post
 }

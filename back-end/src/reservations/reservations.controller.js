@@ -5,6 +5,13 @@ async function list(req, res) {
   res.json({data});
 }
 
+async function post(req, res, next) {
+  //total filler 
+  const data = await service.post(req.body)
+  res.json({data})
+}
+
 module.exports = {
   list,
+  post,
 };
