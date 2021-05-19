@@ -150,7 +150,6 @@ export default function NewReservation() {
                 type="date" 
                 placeholder="YYYY-MM-DD" 
                 pattern="\d{4}-\d{2}-\d{2}"
-                min={today()}
                 name="reservation_date"
                 onChange={handleChange}
                 value={formData.reservation_date}

@@ -23,17 +23,19 @@ const hasValidReservationData = (req, res, next) => {
 
   const dateFormat = /\d\d\d\d-\d\d-\d\d/;
   const timeFormat = /\d\d:\d\d/;
-
+  const reserveDate = new Date(`${reservation_date}T${reservation_time}:00.000`);
   const dateIsValid = reservation_date.match(dateFormat)?.length > 0;
   const timeIsValid = reservation_time.match(timeFormat)?.length > 0;
   const peopleIsValid = typeof people === 'number'
+  const todaysDate = new Date();
 
-  if (dateIsValid && timeIsValid && peopleIsValid) {
+  if (dateIsValid && reserveDate.getDay() !== 2 && reserveDate >= todaysDate && timeIsValid && peopleIsValid) {
      next();
   } else {
     next({
       status: 400,
-      message: "Invalid data format provided. Requires {string: [first_name, last_name, mobile_number], date: reservation_date, time: reservation_time, number: people}"
+      message: "Invalid data format provided. Requires {string: [first_name, last_name, mobile_number], date: reservation_date, time: reservation_time, number: people}"+ 
+      "Restaurant cannot be closed, reservation must be in the future"
     });
   }
 };
