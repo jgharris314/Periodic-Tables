@@ -29,9 +29,21 @@ const hasValidReservationData = (req, res, next) => {
   const peopleIsValid = typeof people === 'number'
   const todaysDate = new Date();
 
+ 
+     
+  if(reserveDate.getHours() < 10 || (reserveDate.getHours() === 10 && reserveDate.getMinutes() < 30)) {
+    return next({status:400, message: "Reservation cannot be made: Restaurant is not open until 10:30AM." });
+  }
+  else if(reserveDate.getHours() > 22 || (reserveDate.getHours() === 22 && reserveDate.getMinutes() >= 30)) {
+    return next({status: 400, message: "Reservation cannot be made: Restaurant is closed after 10:30PM." });
+  }
+  else if(reserveDate.getHours() > 21 || (reserveDate.getHours() === 21 && reserveDate.getMinutes() > 30)) {
+  return next({status:400, message: "Reservation cannot be made: Reservation must be made at least an hour before closing (10:30PM)." })
+  } 
   if (dateIsValid && reserveDate.getDay() !== 2 && reserveDate >= todaysDate && timeIsValid && peopleIsValid) {
-     next();
-  } else {
+    next();
+  }
+  else {
     next({
       status: 400,
       message: "Invalid data format provided. Requires {string: [first_name, last_name, mobile_number], date: reservation_date, time: reservation_time, number: people}"+ 
