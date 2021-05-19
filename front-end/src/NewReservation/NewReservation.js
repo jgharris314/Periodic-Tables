@@ -1,5 +1,6 @@
-import React, { useEffect, useState, Fragment } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import ErrorAlert from "../layout/ErrorAlert";
 import { createReservation } from "../utils/api"
 import { today } from "../utils/date-time"
 /**
@@ -18,10 +19,48 @@ export default function NewReservation() {
     mobile_number: "",
     reservation_date: "",
     reservation_time: "",
-    people: 1,
+    people: 0,
   };
 
   const [formData, setFormData] = useState({ ...initialFormData });
+  const [errors, setErrors] = useState([]);
+
+  function validDate() {
+    const foundErrors = []
+    const reserveDate = new Date(`${formData.reservation_date}T${formData.reservation_time}:00.000`);
+		const todaysDate = new Date();
+    if (reserveDate.getDay() === 2){
+      foundErrors.push({ message: "Reservations cannot be made on a Tuesday (Restaurant is closed)." })
+    }
+
+    if(reserveDate < todaysDate) {
+			foundErrors.push({ message: "Reservation cannot be made: Date is in the past." });
+		}
+
+		if(reserveDate.getHours() < 10 || (reserveDate.getHours() === 10 && reserveDate.getMinutes() < 30)) {
+			foundErrors.push({ message: "Reservation cannot be made: Restaurant is not open until 10:30AM." });
+		}
+		else if(reserveDate.getHours() > 22 || (reserveDate.getHours() === 22 && reserveDate.getMinutes() >= 30)) {
+			foundErrors.push({ message: "Reservation cannot be made: Restaurant is closed after 10:30PM." });
+		}
+		else if(reserveDate.getHours() > 21 || (reserveDate.getHours() === 21 && reserveDate.getMinutes() > 30)) {
+			foundErrors.push({ message: "Reservation cannot be made: Reservation must be made at least an hour before closing (10:30PM)." })
+		}
+
+    setErrors(foundErrors)
+    return foundErrors.length > 0
+  }
+
+  function validField() {
+    const foundErrors = []
+    for(const field in formData) {
+			if(formData[field] === "") {
+				foundErrors.push({ message: `${field.split("_").join(" ")} cannot be left blank.`})
+			}
+		}
+
+		return foundErrors.length > 0;
+  }
 
   const handleChange = ({ target }) => {
     setFormData({
@@ -29,31 +68,38 @@ export default function NewReservation() {
       [target.name]: target.value,
     });
   };
+  const peopleChange = ({ target }) => {
+    setFormData({
+      ...formData,
+      [target.name]: Number(target.value),
+    });
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await createReservation(formData)
-    .then((res) => history.push("/dashboard"))
-    setFormData({...initialFormData})
+    
+    if (!validDate() && !validField()){
+      console.log(formData)
+      await createReservation(formData).then((x) =>
+      history.push(`/dashboard?date=${formData.reservation_date}`))
+    }
     
   };
 
   const handleCancel = (event) => {
     event.preventDefault();
     setFormData({ ...initialFormData });
-    //Check to see this is what is wanted
-    history.push("/dashboard");
+    history.goBack()
   };
 
-  const handleValidatePhone = () => {
-    
-    const formattedNumber = `(${formData.mobile_number[0]}$)`
-    return formattedNumber
+  const errorsJSX = () => {
+    return errors.map((error, index) => <ErrorAlert key={index} error={error}/>);
   }
-
   return (
-    <Fragment>
+    <div>
+      
       <form onSubmit={handleSubmit}>
+      {errorsJSX()}
         <h3>Create a new Reservation</h3>
         <div className="container">
           <div className="row">
@@ -61,12 +107,11 @@ export default function NewReservation() {
               First Name:
               <input
                 id="first_name"
-                type="tel"
+                type="text"
                 name="first_name"
                 onChange={handleChange}
                 value={formData.first_name}
                 required
-                minLength="2"
               />
             </label>
           </div>
@@ -80,7 +125,6 @@ export default function NewReservation() {
                 onChange={handleChange}
                 value={formData.last_name}
                 required
-                minLength="2"
               />
             </label>
           </div>
@@ -91,7 +135,6 @@ export default function NewReservation() {
                 id="mobile_number"
                 type="tel"
                 placeholder="012-345-6789"
-                pattern="\d{3}-\d{3}-\d{4}"
                 name="mobile_number"
                 onChange={handleChange}
                 value={formData.mobile_number}
@@ -135,12 +178,9 @@ export default function NewReservation() {
               Number of People
               <input
                 id="people"
-                //still undecided on the exact type i wanna use
                 type="number"
-                name="people"
-                min="1"
-                max="6"
-                onChange={handleChange}
+                name="people"             
+                onChange={peopleChange}
                 value={formData.people}
               />
             </label>
@@ -151,6 +191,6 @@ export default function NewReservation() {
           </div>
         </div>
       </form>
-    </Fragment>
+    </div>
   );
 }

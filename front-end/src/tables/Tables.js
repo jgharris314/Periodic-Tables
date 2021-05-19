@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Fragment } from "react";
+import React, {  Fragment } from "react";
 
 /**
  * Defines the Tables page.

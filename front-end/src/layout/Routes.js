@@ -8,6 +8,7 @@ import Tables from "../tables/Tables"
 import NewReservation from "../NewReservation/NewReservation"
 import Search from "../Search/Search"
 import NewTable from "../NewTable/NewTable"
+import useQuery from "../utils/useQuery"
 /**
  * Defines all the routes for the application.
  *
@@ -15,7 +16,10 @@ import NewTable from "../NewTable/NewTable"
  *
  * @returns {JSX.Element}
  */
+
 function Routes() {
+  const query = useQuery();
+  const date = query.get("date")
   return (
     <Switch>
       <Route exact={true} path="/">
@@ -28,7 +32,7 @@ function Routes() {
         <Redirect to={"/dashboard"} />
       </Route>
       <Route path="/dashboard">
-        <Dashboard date={today()} />
+        <Dashboard date = {date ? date : today()} />
       </Route>
       <Route path="/search">
         <Search />

@@ -1,9 +1,9 @@
-import React, { useEffect, useState, Fragment } from "react";
+import React, { Fragment } from "react";
 
 export default function DashboardItem({date, reservations}) {
     
     return (
-    <Fragment className="container">
+    <Fragment>
         <div className="row">
             {date}
         </div>
@@ -11,7 +11,7 @@ export default function DashboardItem({date, reservations}) {
             <ul>
                 {reservations.filter((e) => e.reservation_date === date)
                 .map((e) => 
-                <li>FirstName: {e.first_name} Last Name: {e.last_name} Seats: {e.people}</li>)}
+                <li>FirstName: {e.first_name} Last Name: {e.last_name} Seats: {e.people} Time: {e.reservation_time}</li>)}
             </ul>
         </div>
     </Fragment>
