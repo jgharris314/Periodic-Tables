@@ -71,7 +71,23 @@ async function list(req, res) {
   res.json({ data: reservations });
 }
 
+async function listById(req,res) {
+  const reservation = await service.listById(req.params.reservation_id)
+  res.json({ data: reservation})
+}
+
+async function reservationExists(req, res, next) {
+  const {reservation_id} = req.params;
+  const reservation = await service.listById(reservation_id)
+
+  if(reservation){
+    return next()
+  }
+  return next({status: 404, message: `Reservation ID ${reservation_id} cannot be found`})
+}
+
 module.exports = {
   list,
   post: [ hasAllValidProperties, hasValidReservationData,  asyncErrorBoundary(post)],
+  listById: [asyncErrorBoundary(reservationExists), asyncErrorBoundary(listById)]
 };

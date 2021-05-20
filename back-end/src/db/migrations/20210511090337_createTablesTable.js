@@ -4,7 +4,7 @@ exports.up = function (knex) {
     table.timestamps(true, true);
     table.string("table_name").notNullable();
     table.integer("capacity").unsigned().notNullable();
-    table.boolean("status").notNullable();
+    table.boolean("status")
     table.integer("reservation_id").unsigned()
     table
       .foreign("reservation_id")

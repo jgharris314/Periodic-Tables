@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import ErrorAlert from "../layout/ErrorAlert";
 import { createReservation } from "../utils/api"
-import { today } from "../utils/date-time"
 /**
  * Defines the NewReservation page.
  * @param
@@ -63,27 +62,19 @@ export default function NewReservation() {
   }
 
   const handleChange = ({ target }) => {
+    const value = target.name === 'people' ? Number(target.value) : target.value;
     setFormData({
       ...formData,
-      [target.name]: target.value,
-    });
-  };
-  const peopleChange = ({ target }) => {
-    setFormData({
-      ...formData,
-      [target.name]: Number(target.value),
+      [target.name]: value,
     });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
     if (!validDate() && !validField()){
-      console.log(formData)
       await createReservation(formData).then((x) =>
       history.push(`/dashboard?date=${formData.reservation_date}`))
     }
-    
   };
 
   const handleCancel = (event) => {
@@ -179,7 +170,7 @@ export default function NewReservation() {
                 id="people"
                 type="number"
                 name="people"             
-                onChange={peopleChange}
+                onChange={handleChange}
                 value={formData.people}
               />
             </label>
