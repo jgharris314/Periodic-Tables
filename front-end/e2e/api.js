@@ -52,7 +52,7 @@ async function fetchJson(url, options, onCancel) {
  *  a promise that resolves to the newly created reservation.
  */
 async function createReservation(reservation, signal) {
-  const url = `${API_BASE_URL}/reservations/new`;
+  const url = `${API_BASE_URL}/reservations`;
   const options = {
     method: "POST",
     headers,
@@ -87,6 +87,7 @@ async function seatReservation(reservation_id, table_id) {
   };
   return await fetchJson(url, options, {});
 }
+
 
 module.exports = {
   createReservation,

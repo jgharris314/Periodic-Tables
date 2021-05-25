@@ -47,13 +47,25 @@ function Routes() {
         .catch(setTablesError)
     return () => abortController.abort();
   }
+
+  function loadTables() {
+    const abortController = new AbortController();
+    setTablesError(null);
+    return listTables(abortController.signal).then(setTables).catch(setTablesError);
+  }
+
+  function refreshReservations() {
+    setReservationsError(null);
+    return listReservations({ date }).then(setReservations).catch(setReservationsError);
+  }
+
   return (
     <Switch>
       <Route exact={true} path="/">
         <Redirect to={"/dashboard"} />
       </Route>
       <Route path="/reservations/:reservation_id/seat">
-        <SeatForm />
+        <SeatForm reservations={reservations} tables={tables} loadTables={loadTables} refreshReservations={refreshReservations}/>
       </Route>
       <Route path="/reservations/new">
         <NewReservation />
@@ -68,6 +80,8 @@ function Routes() {
           reservationsError={reservationsError}
           tables={tables}
           tablesError={tablesError}
+          loadTables={loadTables}
+          refreshReservations={refreshReservations}
           />
       </Route>
       <Route path="/search">

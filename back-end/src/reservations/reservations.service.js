@@ -11,6 +11,7 @@ function listAll(){
     .select("*")
 }
 
+
 function post(reservation){
     return knex("reservations as r")
     .insert(reservation, "*").then((e) => e[0])
@@ -21,10 +22,19 @@ function listById(reservation_Id){
     .select("*")
     .where({reservation_id : reservation_Id }).then((e) => e[0])
 }
+const updateReservationStatus = (reservation_id, status) => {
+    return knex("reservations")
+      .update({ status }, "*")
+      .where({ reservation_id })
+      .then((reservations) => reservations[0]);
+  };
 
 module.exports = {
+    
     list,
     post,
     listById,
     listAll,
+    updateReservationStatus,
+    
 }

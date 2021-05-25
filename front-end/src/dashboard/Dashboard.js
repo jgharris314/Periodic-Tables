@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { listReservations, listTables } from "../utils/api";
-import ErrorAlert from "../layout/ErrorAlert";
 import  DashboardItem  from "../DashboardItem/DashboardItem";
 import { useHistory } from "react-router-dom";
 import { today, previous, next } from "../utils/date-time";
@@ -12,7 +10,7 @@ import TableList from "../TableList/TableList"
  *  the date for which the user wants to view reservations.
  * @returns {JSX.Element}
  */
-function Dashboard({ date, reservations, tables, reservationsError, tablesError, }) {
+function Dashboard({ date, reservations, tables, reservationsError, tablesError, loadTables, refreshReservations}) {
   
   const history = useHistory();
  
@@ -33,7 +31,7 @@ function Dashboard({ date, reservations, tables, reservationsError, tablesError,
         <DashboardItem date={date} reservations={reservations}/>
       </div>
       <div className="row">
-        <TableList tables={tables}/>
+        <TableList tables={tables} loadTables={loadTables} refreshReservations={refreshReservations}/>
       </div>
     </main>
   );

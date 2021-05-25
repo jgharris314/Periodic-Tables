@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ErrorAlert from "../layout/ErrorAlert";
 import { useHistory } from "react-router-dom"
 import { createTable } from "../utils/api"
+import {today} from "../utils/date-time"
 /**
  * Defines the NewTable page.
  * @param 
@@ -46,7 +47,7 @@ export default function NewTable() {
   const handleSubmit = async (event) => {
       event.preventDefault();
       if(validData()){
-          await createTable(formData).then((res) => history.push('/dashboard'))
+          await createTable(formData).then((res) => history.push(`/dashboard?date=${today()}`))
       }
   };
 
