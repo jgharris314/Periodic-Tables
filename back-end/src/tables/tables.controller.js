@@ -12,6 +12,8 @@ async function post(req,res){
 }
 
 async function update(req, res){
+    const { reservation_id } = req.body.data;
+    await reservationService.updateReservationStatus(Number(reservation_id), "seated");
     res.json({data: await service.update(res.locals.table)})
 }
 
@@ -66,7 +68,7 @@ const tableIsAvailable = async(req,res,next) => {
   if (table.reservation_id) return next({status: 400, message: "Table is currently occupied/unavailable."})
   
   if (reservation.people > table.capacity) return next({status: 400, message: "Reservation party size is too large for table capacity."})
-  
+  if(reservation.status === "seated") return next({status: 400, message: "Reservation has already been seated."})
   table.reservation_id = res.locals.reservation_id;
   next();
 }

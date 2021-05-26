@@ -9,7 +9,7 @@ export default function DashboardItem({ date, reservations }) {
       <div className="row">
         <ul>
           {reservations
-            .filter((e) => e.reservation_date === date)
+            .filter((e) => e.reservation_date === date && e.status !== 'finished')
             .map(
               ({
                 first_name,
@@ -24,7 +24,7 @@ export default function DashboardItem({ date, reservations }) {
                   Last Name: {last_name}
                   Seats: {people}
                   Time: {reservation_time}
-                  Status: {status}
+                 <p data-reservation-id-status={reservation_id}> Status: {status} </p>
                   {status === "booked" ? (
                     <Link to={`/reservations/${reservation_id}/seat`}>
                       Seat

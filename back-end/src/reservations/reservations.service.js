@@ -14,20 +14,24 @@ function listAll(){
 
 function post(reservation){
     return knex("reservations as r")
-    .insert(reservation, "*").then((e) => e[0])
+    .insert(reservation, "*")
+    .then((e) => e[0])
 }
 
 function listById(reservation_Id){
     return knex("reservations")
     .select("*")
-    .where({reservation_id : reservation_Id }).then((e) => e[0])
+    .where({reservation_id : reservation_Id })
+    .then((e) => e[0])
 }
 const updateReservationStatus = (reservation_id, status) => {
     return knex("reservations")
       .update({ status }, "*")
       .where({ reservation_id })
-      .then((reservations) => reservations[0]);
+      .then((e) => e[0]);
   };
+
+  
 
 module.exports = {
     
