@@ -2,12 +2,18 @@ import React, { Fragment, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { updateReservationStatus } from "../utils/api";
 
-export default function DashboardItem({ date, reservations, mobile, refreshReservations }) {
+export default function DashboardItem({
+  date,
+  reservations,
+  mobile,
+  refreshReservations,
+}) {
   const history = useHistory();
-  const [error, setError] = useState([])
+  const [error, setError] = useState([]);
   const handleCancel = async (reservation_id) => {
-    
-    const confirmed = window.confirm("Do you want to cancel this reservation? This cannot be undone.")
+    const confirmed = window.confirm(
+      "Do you want to cancel this reservation? This cannot be undone."
+    );
     if (confirmed) {
       try {
         await updateReservationStatus(reservation_id, "cancelled");
@@ -16,106 +22,120 @@ export default function DashboardItem({ date, reservations, mobile, refreshReser
         setError(error);
       }
     }
+  };
+
+  if (date) {
+    return (
+      <div className="container">
+        <div className="row">
+          {reservations
+
+            .filter(
+              (e) =>
+                e.reservation_date === date &&
+                e.status !== "finished" &&
+                e.status !== "cancelled"
+            )
+            .map(
+              ({
+                first_name,
+                last_name,
+                people,
+                reservation_time,
+                status,
+                reservation_id,
+              }) => (
+                <div className="col col-4" key={reservation_id}>
+                  <p>FirstName: {first_name}</p>
+                  <p>Last Name: {last_name}</p>
+                  <p>Seats: {people}</p>
+                  <p>Time: {reservation_time}</p>
+                  <p data-reservation-id-status={reservation_id}>
+                    {" "}
+                    Status: {status}{" "}
+                  </p>
+                  {status === "booked" ? (
+                    <div className="row">
+                      <a href={`/reservations/${reservation_id}/seat`}>
+                        <button>Seat</button>
+                      </a>
+                      <a href={`/reservations/${reservation_id}/edit`}>
+                        <button>Edit</button>
+                      </a>
+                      <button
+                        onClick={() => handleCancel(reservation_id)}
+                        data-reservation-id-cancel={reservation_id}
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      onClick={() => handleCancel(reservation_id)}
+                      data-reservation-id-cancel={reservation_id}
+                    >
+                      Cancel
+                    </button>
+                  )}
+                </div>
+              )
+            )}
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div className="container">
+        <div className="row">
+          {reservations
+
+            .filter((e) => e.status !== "finished" && e.status !== "cancelled")
+            .map(
+              ({
+                first_name,
+                last_name,
+                people,
+                reservation_time,
+                status,
+                reservation_id,
+              }) => (
+                <div className="col col-4" key={reservation_id}>
+                  <p>FirstName: {first_name}</p>
+                  <p>Last Name: {last_name}</p>
+                  <p>Seats: {people}</p>
+                  <p>Time: {reservation_time}</p>
+                  <p data-reservation-id-status={reservation_id}>
+                    {" "}
+                    Status: {status}{" "}
+                  </p>
+                  {status === "booked" ? (
+                    <div className="row">
+                      <a href={`/reservations/${reservation_id}/seat`}>
+                        <button>Seat</button>
+                      </a>
+                      <a href={`/reservations/${reservation_id}/edit`}>
+                        <button>Edit</button>
+                      </a>
+                      <button
+                        onClick={() => handleCancel(reservation_id)}
+                        data-reservation-id-cancel={reservation_id}
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      onClick={() => handleCancel(reservation_id)}
+                      data-reservation-id-cancel={reservation_id}
+                    >
+                      Cancel
+                    </button>
+                  )}
+                </div>
+              )
+            )}
+        </div>
+      </div>
+    );
   }
- 
-  if(date) {
-  return (
-    
-    <div className="container"> 
-      <div className="row">
-        
-          {
-          reservations
-          
-            .filter(
-              (e) => e.reservation_date === date && e.status !== "finished" && e.status !== "cancelled"
-            )
-            .map(
-              ({
-                first_name,
-                last_name,
-                people,
-                reservation_time,
-                status,
-                reservation_id,
-              }) => (
-                <div className="col col-4" key={reservation_id}>
-                  <p>FirstName: {first_name}</p>
-                  <p>Last Name: {last_name}</p>
-                  <p>Seats: {people}</p>
-                  <p>Time: {reservation_time}</p>
-                  <p data-reservation-id-status={reservation_id}>
-                    {" "}
-                    Status: {status}{" "}
-                  </p>
-                  {status === "booked" ? (
-                    <div className="row">
-                        <a href={`/reservations/${reservation_id}/seat`}>
-                          <button>Seat</button>
-                        </a>
-                        <a href={`/reservations/${reservation_id}/edit`}>
-                      <button>Edit</button>
-                      </a>
-                      <button onClick={() => handleCancel(reservation_id)} data-reservation-id-cancel={reservation_id}>Cancel</button>
-                    </div>
-                  ) : <button onClick={() => handleCancel(reservation_id)} data-reservation-id-cancel={reservation_id}>Cancel</button>}
-                  
-                </div>
-              )
-            )}
-        
-      </div>
-    </div>
-    
-  );
-                  }
-                  else{
-                    return (
-                      <div className="container"> 
-      <div className="row">
-        
-          {
-          reservations
-          
-            .filter(
-              (e) => e.status !== "finished" && e.status !== "cancelled"
-            )
-            .map(
-              ({
-                first_name,
-                last_name,
-                people,
-                reservation_time,
-                status,
-                reservation_id,
-              }) => (
-                <div className="col col-4" key={reservation_id}>
-                  <p>FirstName: {first_name}</p>
-                  <p>Last Name: {last_name}</p>
-                  <p>Seats: {people}</p>
-                  <p>Time: {reservation_time}</p>
-                  <p data-reservation-id-status={reservation_id}>
-                    {" "}
-                    Status: {status}{" "}
-                  </p>
-                  {status === "booked" ? (
-                    <div className="row">
-                        <a href={`/reservations/${reservation_id}/seat`}>
-                          <button>Seat</button>
-                        </a>
-                        <a href={`/reservations/${reservation_id}/edit`}>
-                      <button>Edit</button>
-                      </a>
-                      <button onClick={() => handleCancel(reservation_id)} data-reservation-id-cancel={reservation_id}>Cancel</button>
-                    </div>
-                  ) : <button onClick={() => handleCancel(reservation_id)} data-reservation-id-cancel={reservation_id}>Cancel</button>}
-                  
-                </div>
-              )
-            )}
-        
-      </div>
-    </div>
-                    )
-                  }
 }
