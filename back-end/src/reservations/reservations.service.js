@@ -31,8 +31,22 @@ const updateReservationStatus = (reservation_id, status) => {
       .then((e) => e[0]);
   };
 
+ 
+  function update(reservation_id, updateData) {
+    return knex("reservations")
+      .update(updateData, "*")
+      .where({ reservation_id })
+      .then((e) => e[0]);
+  }
   
-
+  function search(mobile_number) {
+    return knex("reservations")
+      .whereRaw(
+        "translate(mobile_number, '() -', '') like ?",
+        `%${mobile_number.replace(/\D/g, "")}%`
+      )
+      .orderBy("reservation_date");
+  }
 module.exports = {
     
     list,
@@ -40,5 +54,6 @@ module.exports = {
     listById,
     listAll,
     updateReservationStatus,
-    
+    update,
+    search
 }

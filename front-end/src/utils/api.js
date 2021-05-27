@@ -69,18 +69,18 @@ export async function listReservations(params, signal) {
 }
 
 export async function listTables(signal) {
-  const url = new URL(`${API_BASE_URL}/tables`)
-  
-return await fetchJson(url, { headers, signal }, [])
+  const url = new URL(`${API_BASE_URL}/tables`);
+
+  return await fetchJson(url, { headers, signal }, []);
 }
 
 /**
  * Creates a new reservation and stores it to the DB
- * 
+ *
  * @returns {Promise<[reservation]>}
  */
 
-export async function createReservation(reservation, signal){
+export async function createReservation(reservation, signal) {
   const url = `${API_BASE_URL}/reservations`;
   const options = {
     method: "POST",
@@ -88,7 +88,7 @@ export async function createReservation(reservation, signal){
     body: JSON.stringify({ data: reservation }),
     signal,
   };
-  return await fetchJson(url, options, reservation)
+  return await fetchJson(url, options, reservation);
 }
 
 export async function createTable(table, signal) {
@@ -126,7 +126,21 @@ export async function updateReservationStatus(reservation_id, status, signal) {
   const url = new URL(`${API_BASE_URL}/reservations/${reservation_id}/status`);
   return await fetchJson(
     url,
-    { method: "PUT", headers, signal, body: JSON.stringify({ data: { status } }) },
+    {
+      method: "PUT",
+      headers,
+      signal,
+      body: JSON.stringify({ data: { status } }),
+    },
+    []
+  );
+}
+
+export async function updateReservation(reservation_id, updateData, signal) {
+  const url = new URL(`${API_BASE_URL}/reservations/${reservation_id}/edit`);
+  return await fetchJson(
+    url,
+    { method: "PUT", headers, signal, body: JSON.stringify(updateData) },
     []
   );
 }

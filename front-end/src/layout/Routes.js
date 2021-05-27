@@ -24,7 +24,7 @@ function Routes() {
   const query = useQuery();
   const date = query.get("date")
   const {url} = useRouteMatch()
-  //Code from Dashboard
+  
   const [reservations, setReservations] = useState([]);
   const [reservationsError, setReservationsError] = useState(null);
   const [tables, setTables] = useState([])
@@ -63,6 +63,9 @@ function Routes() {
     <Switch>
       <Route exact={true} path="/">
         <Redirect to={"/dashboard"} />
+      </Route>
+      <Route path="/reservations/:reservation_id/edit">
+        <NewReservation refreshReservations={refreshReservations}/>
       </Route>
       <Route path="/reservations/:reservation_id/seat">
         <SeatForm reservations={reservations} tables={tables} loadTables={loadTables} refreshReservations={refreshReservations}/>
