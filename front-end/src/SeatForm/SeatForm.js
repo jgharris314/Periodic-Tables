@@ -74,18 +74,19 @@ export default function SeatForm({
 
   return (
     <div className = "conainer">
-      <div className="row">
+      <div className="card">
+        <div className="card-body">
       <h3>
         Choose a table for Party: {reservationState.last_name} People:{" "}
         {reservationState.people}
       </h3>
-      </div>
+      
       <div className="row">
       {validationErrors.map((valError, index) => (
         <ErrorAlert key={index} error={valError} />
       ))}
       <form onSubmit={handleSubmit}>
-        <div className="row">
+        
         <select
           name="table_id"
           id="table_name"
@@ -100,12 +101,14 @@ export default function SeatForm({
             >{`${table_name} - ${capacity}`}</option>
           ))}
         </select>
-        </div>
-        <div className="row">
+        
+        
         <button type="submit">Submit</button>
         <button onClick={handleCancel}>Cancel</button>
-        </div>
+        
       </form>
+      </div>
+      </div>
       </div>
       <ErrorAlert error={error} />
     </div>

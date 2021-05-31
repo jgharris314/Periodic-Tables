@@ -1,14 +1,11 @@
-import React, { Fragment, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useState } from "react";
 import { updateReservationStatus } from "../utils/api";
-
+import './dashboardItem.css'
 export default function DashboardItem({
   date,
   reservations,
-  mobile,
   refreshReservations,
 }) {
-  const history = useHistory();
   const [error, setError] = useState([]);
   const handleCancel = async (reservation_id) => {
     const confirmed = window.confirm(
@@ -26,7 +23,7 @@ export default function DashboardItem({
 
   if (date) {
     return (
-      <div className="container">
+      <div className="container ">
         <div className="row">
           {reservations
 
@@ -46,6 +43,8 @@ export default function DashboardItem({
                 reservation_id,
               }) => (
                 <div className="col col-4" key={reservation_id}>
+                  <div className="card dashboardItem">
+                  <div className="card-body">
                   <p>FirstName: {first_name}</p>
                   <p>Last Name: {last_name}</p>
                   <p>Seats: {people}</p>
@@ -55,16 +54,17 @@ export default function DashboardItem({
                     Status: {status}{" "}
                   </p>
                   {status === "booked" ? (
-                    <div className="row">
-                      <a href={`/reservations/${reservation_id}/seat`}>
-                        <button>Seat</button>
+                    <div>
+                      <a href={`/reservations/${reservation_id}/seat`} className="btn btn-primary">
+                        Seat
                       </a>
-                      <a href={`/reservations/${reservation_id}/edit`}>
-                        <button>Edit</button>
+                      <a href={`/reservations/${reservation_id}/edit`} className="btn btn-secondary">
+                        Edit
                       </a>
                       <button
                         onClick={() => handleCancel(reservation_id)}
                         data-reservation-id-cancel={reservation_id}
+                        className="btn btn-danger"
                       >
                         Cancel
                       </button>
@@ -73,14 +73,20 @@ export default function DashboardItem({
                     <button
                       onClick={() => handleCancel(reservation_id)}
                       data-reservation-id-cancel={reservation_id}
+                      className="btn btn-danger"
                     >
                       Cancel
                     </button>
                   )}
+                  </div>
+                </div>
                 </div>
               )
+              
             )}
+            
         </div>
+        
       </div>
     );
   } else {
@@ -98,27 +104,32 @@ export default function DashboardItem({
                 reservation_time,
                 status,
                 reservation_id,
+                reservation_date
               }) => (
                 <div className="col col-4" key={reservation_id}>
+                  <div className="card dashboardItem">
+                  <div className="card-body">
                   <p>FirstName: {first_name}</p>
                   <p>Last Name: {last_name}</p>
                   <p>Seats: {people}</p>
                   <p>Time: {reservation_time}</p>
+                  <p>Reservation Date: {reservation_date}</p>
                   <p data-reservation-id-status={reservation_id}>
                     {" "}
                     Status: {status}{" "}
                   </p>
                   {status === "booked" ? (
-                    <div className="row">
-                      <a href={`/reservations/${reservation_id}/seat`}>
-                        <button>Seat</button>
+                    <div>
+                      <a href={`/reservations/${reservation_id}/seat`} className="btn btn-primary">
+                        Seat
                       </a>
-                      <a href={`/reservations/${reservation_id}/edit`}>
-                        <button>Edit</button>
+                      <a href={`/reservations/${reservation_id}/edit`} className="btn btn-secondary">
+                        Edit
                       </a>
                       <button
                         onClick={() => handleCancel(reservation_id)}
                         data-reservation-id-cancel={reservation_id}
+                        className="btn btn-danger"
                       >
                         Cancel
                       </button>
@@ -127,14 +138,20 @@ export default function DashboardItem({
                     <button
                       onClick={() => handleCancel(reservation_id)}
                       data-reservation-id-cancel={reservation_id}
+                      className="btn btn-danger"
                     >
                       Cancel
                     </button>
                   )}
+                  </div>
+                </div>
                 </div>
               )
+              
             )}
+            
         </div>
+        
       </div>
     );
   }

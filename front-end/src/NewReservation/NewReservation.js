@@ -152,17 +152,19 @@ export default function NewReservation({refreshReservations, loadReservations}) 
   };
   return (
     <div className="container">
-      <div className="row">
+      
+      <div className="card">
+      <div className="card-body">
         <h3>Create a new Reservation</h3>
-      </div>
-      <div className="row">
+      
+      
         <form onSubmit={handleSubmit}>
           {errorsJSX()}
-
-          <div className="row">
+          <ul className="list-group list-group-flush">
+          <li className="list-group-item">
             <label htmlFor="first_name">
-              First Name:
-              <input
+              First Name:{" "}
+              <input className="list-group-item"
                 id="first_name"
                 type="text"
                 name="first_name"
@@ -171,11 +173,11 @@ export default function NewReservation({refreshReservations, loadReservations}) 
                 required
               />
             </label>
-          </div>
-          <div className="row">
+          </li>
+          <li className="list-group-item">
             <label htmlFor="last_name">
               Last Name:
-              <input
+              <input className="list-group-item"
                 id="last_name"
                 type="text"
                 name="last_name"
@@ -184,11 +186,11 @@ export default function NewReservation({refreshReservations, loadReservations}) 
                 required
               />
             </label>
-          </div>
-          <div className="row">
+          </li>
+          <li className="list-group-item">
             <label htmlFor="mobile_number">
               Mobile Number:
-              <input
+              <input className="list-group-item"
                 id="mobile_number"
                 type="tel"
                 placeholder="012-345-6789"
@@ -198,11 +200,11 @@ export default function NewReservation({refreshReservations, loadReservations}) 
                 required
               />
             </label>
-          </div>
-          <div className="row">
+          </li>
+          <li className="list-group-item">
             <label htmlFor="reservation_date">
               Reservation Date
-              <input
+              <input className="list-group-item"
                 id="reservation_date"
                 type="date"
                 placeholder="YYYY-MM-DD"
@@ -213,11 +215,11 @@ export default function NewReservation({refreshReservations, loadReservations}) 
                 required
               />
             </label>
-          </div>
-          <div className="row">
+          </li>
+          <li className="list-group-item">
             <label htmlFor="reservation_time">
               Reservation Time
-              <input
+              <input className="list-group-item"
                 id="reservation_time"
                 type="time"
                 placeholder="HH:MM"
@@ -228,11 +230,11 @@ export default function NewReservation({refreshReservations, loadReservations}) 
                 required
               />
             </label>
-          </div>
-          <div className="row">
+          </li>
+          <li className="list-group-item">
             <label htmlFor="people">
               Number of People
-              <input
+              <input className="list-group-item"
                 id="people"
                 type="number"
                 name="people"
@@ -240,12 +242,14 @@ export default function NewReservation({refreshReservations, loadReservations}) 
                 value={formData.people}
               />
             </label>
-          </div>
+          </li>
+          </ul>
           <div className="row">
-            <button type="submit">Submit</button>
-            <button onClick={handleCancel}>Cancel</button>
+            <button type="submit" className="btn btn-primary">Submit</button>
+            <button onClick={handleCancel} className="btn btn-danger">Cancel</button>
           </div>
         </form>
+      </div>
       </div>
     </div>
   );

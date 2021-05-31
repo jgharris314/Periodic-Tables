@@ -51,14 +51,17 @@ export default function Search() {
   };
   return (
     <div className="container">
-      <div className="row">
-        <h2>Search</h2>
-      </div>
-      <div className="row">
+      <div className="card">
+        <div className="card-body">
+        <h3>Search</h3>
+      
+      
         <form onSubmit={handleSubmit}>
+          <ul className="list-group-flush">
+            <li className="list-group-item">
           <label htmlFor="mobile_number">
             Mobile Number:{" "}
-            <input
+            <input className="list-group-item"
               id="mobile_number"
               type="text"
               name="mobile_number"
@@ -67,14 +70,17 @@ export default function Search() {
               required
             />
           </label>
+          </li>
+          </ul>
           <div className="row">
-            <button type="submit">Find</button>
-            <button onClick={handleCancel}>Cancel</button>
+            <button type="submit" className="btn btn-primary">Find</button>
+            <button onClick={handleCancel} className="btn btn-danger">Cancel</button>
           </div>
         </form>
         {errors ? <ErrorAlert error={errors} />: null }
         <DashboardItem reservations={results}/>
         {noResult ? <h6>No reservations found</h6> : null}
+      </div>
       </div>
     </div>
   );

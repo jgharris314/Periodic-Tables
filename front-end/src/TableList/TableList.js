@@ -2,6 +2,7 @@ import React from "react";
 import {
   deleteReservationFromTable,
 } from "../utils/api";
+import './tableList.css'
 
 export default function TableList({ tables, loadTables, refreshReservations }) {
   const finishHandler = async (table_id, reservation_id) => {
@@ -20,8 +21,9 @@ export default function TableList({ tables, loadTables, refreshReservations }) {
     <div className="container">
        <div className="row mx-5"> 
       {tables.map((e) => (
-        <div className="col col-4" key={e.table_id}>
-        
+        <div className="col col-4 tableList" key={e.table_id}>
+        <div className="card tableList">
+          <div className="card-body">
           <p>Table Name {e.table_name}</p> 
           <p>Capacity {e.capacity}</p>
           <p data-table-id-status={e.table_id}>{e.reservation_id ? "Occupied" : "Free"}</p>
@@ -29,11 +31,13 @@ export default function TableList({ tables, loadTables, refreshReservations }) {
             <button
               onClick={() => finishHandler(e.table_id)}
               data-table-id-finish={e.table_id}
+              className="btn btn-danger"
             >
               Finish
             </button>
-          ) : <button>Just for looks</button>}
-        
+          ) : null}
+          </div>
+        </div>
         </div>
       ))}
       </div>

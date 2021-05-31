@@ -3,7 +3,7 @@ import DashboardItem from "../DashboardItem/DashboardItem";
 import { useHistory } from "react-router-dom";
 import { today, previous, next } from "../utils/date-time";
 import TableList from "../TableList/TableList";
-
+import './dashboard.css'
 /**
  * Defines the dashboard page.
  * @param date
@@ -22,25 +22,30 @@ function Dashboard({
   const history = useHistory();
 
   return (
-    <div className="container">
+    <div className="container dashboard">
       <main>
         <div className="row d-md-flex mb-3">
-          <h1>Dashboard</h1>
+          <h1 className="dashboardHeader">Dashboard</h1>
         </div>
 
         <div className="row d-md-flex mb-3">
-          <h4 className="mb-0">Reservations for date {date}</h4>
+          <h4 className="mb-0 dashboardSecondary">Reservations for date {date}</h4>
         </div>
         <div className="row">
           <button
             onClick={() => history.push(`/dashboard?date=${previous(date)}`)}
+            className="btn btn-secondary"
           >
             Previous
           </button>
-          <button onClick={() => history.push(`/dashboard?date=${today()}`)}>
+          <button onClick={() => history.push(`/dashboard?date=${today()}`)}
+          className="btn btn-primary"
+          >
             Today
           </button>
-          <button onClick={() => history.push(`/dashboard?date=${next(date)}`)}>
+          <button onClick={() => history.push(`/dashboard?date=${next(date)}`)}
+          className="btn btn-secondary"
+          >
             Next
           </button>
         </div>

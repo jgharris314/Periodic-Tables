@@ -61,46 +61,49 @@ export default function NewTable() {
 
   return (
     <div className="container">
-      <div className="row">
-        <h3>Create a new Table</h3>
-      </div>
-      <div className="row">
-        <form onSubmit={handleSubmit}>
-          {errorsJSX()}
+      <div className="card">
+        <div className="card-body">
+          <h3>Create a new Table</h3>
 
-          <div className="container">
-            <div className="row">
-              <label htmlFor="table_name">
-                Table Name
-                <input
-                  id="table_name"
-                  type="text"
-                  name="table_name"
-                  onChange={handleChange}
-                  value={formData.table_name}
-                  required
-                />
-              </label>
-            </div>
-            <div className="row">
-              <label htmlFor="capacity">
-                Capacity
-                <input
-                  id="capacity"
-                  type="number"
-                  name="capacity"
-                  onChange={handleChange}
-                  value={formData.capacity}
-                  required
-                />
-              </label>
-            </div>
-            <div className="row">
-              <button type="submit">Submit</button>
-              <button onClick={handleCancel}>Cancel</button>
-            </div>
+          <div className="row">
+            <form onSubmit={handleSubmit}>
+              {errorsJSX()}
+
+              <ul className="list-group-flush">
+                <li className="list-group-item">
+                  <label htmlFor="table_name">
+                    Table Name{" "}
+                    <input
+                      className="list-group-item"
+                      id="table_name"
+                      type="text"
+                      name="table_name"
+                      onChange={handleChange}
+                      value={formData.table_name}
+                      required
+                    />
+                  </label>
+                </li>
+                <li className="list-group-item">
+                  <label htmlFor="capacity">
+                    Capacity{" "}
+                    <input
+                      className="list-group-item"
+                      id="capacity"
+                      type="number"
+                      name="capacity"
+                      onChange={handleChange}
+                      value={formData.capacity}
+                      required
+                    />
+                  </label>
+                </li>
+              </ul>
+              <button type="submit" className="btn btn-primary">Submit</button>
+              <button onClick={handleCancel} className="btn btn-danger">Cancel</button>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
