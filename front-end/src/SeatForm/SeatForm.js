@@ -103,8 +103,8 @@ export default function SeatForm({
         </select>
         
         
-        <button type="submit">Submit</button>
-        <button onClick={handleCancel}>Cancel</button>
+        <button type="submit" className="btn btn-primary">Submit</button>
+        <button onClick={handleCancel} className="btn btn-danger">Cancel</button>
         
       </form>
       
