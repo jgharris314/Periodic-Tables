@@ -1,4 +1,4 @@
-#Periodic Tables: Restaurant Reservation System
+# Periodic Tables: Restaurant Reservation System
 
 A simple app to help restaurants manage their reservations.
 
