@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 
-import { Redirect, Route, Switch, useHistory, useRouteMatch } from "react-router-dom";
+import { Redirect, Route, Switch, } from "react-router-dom";
 import Dashboard from "../dashboard/Dashboard";
 import NotFound from "./NotFound";
 import { today } from "../utils/date-time";
@@ -23,7 +23,7 @@ import {listReservations, listTables} from "../utils/api"
 function Routes() {
   const query = useQuery();
   const date = query.get("date")
-  const {url} = useRouteMatch()
+  
   
   const [reservations, setReservations] = useState([]);
   const [reservationsError, setReservationsError] = useState(null);
@@ -31,7 +31,7 @@ function Routes() {
   const [tablesError, setTablesError] = useState(null)
  
 
-  const history = useHistory();
+  
   useEffect(loadDashboard, [date]);
 
   function loadDashboard() {

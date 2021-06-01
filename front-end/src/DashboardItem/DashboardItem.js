@@ -7,6 +7,7 @@ export default function DashboardItem({
   refreshReservations,
 }) {
   const [error, setError] = useState([]);
+  console.log(error)
   const handleCancel = async (reservation_id) => {
     const confirmed = window.confirm(
       "Do you want to cancel this reservation? This cannot be undone."

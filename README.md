@@ -15,6 +15,9 @@ A simple app to help restaurants manage their reservations.
 Frontend: HTML5, CSS3, Javascript, Bootstrap, React.js
 Backend: Node.js, Express.js, PostgreSQL
 
+## Screenshots
+<img src="https://github.com/jgharris314/Periodic-Tables" />
+
 ## API
 
 | Endpoint                               | Method | Description                                                                                           |
