@@ -21,6 +21,27 @@ Backend: Node.js, Express.js, PostgreSQL
 
 <img src="https://github.com/jgharris314/Periodic-Tables/blob/main/readme-screenshots/us-07-search-reservations-submit-valid-after.png" alt="searchImage" title="searchImage" width="600"/>&nbsp;
 
+## Installation
+1. Fork and clone this repository
+2. Run `npm i`
+3. Create a `.env` file in the `backend` directory.
+4. Modify `.env` with the following:</br>
+   <code>
+   &nbsp;DATABASE*URL=\_productionURL*</br>
+   &nbsp;DATABASE*URL_DEVELOPMENT=\_developmentURL*</br>
+   &nbsp;DATABASE*URL_TEST=\_testURL*</br>
+   &nbsp;DATABASE*URL_PREVIEW=\_previewURL*</br>
+   &nbsp;LOG_LEVEL=info</br>
+   </code> 
+5. Update each url to the appropriate database URL
+6. Create a `.env` file in the `frontend` directory.
+7. Modify `.env` with the following:</br>
+   <code>REACT_APP_API_BASE_URL=http://localhost:5000<br/></code>
+8. From inside the backend directory, run `npx knex migrate:latest`.
+9. Run `npx knex seed:run`.
+10. Go back to the main directory and run `npm run start:dev` to run the application locally.
+
+ 
 ## API
 
 | Endpoint                               | Method | Description                                                                                           |
