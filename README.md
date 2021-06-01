@@ -16,7 +16,10 @@ Frontend: HTML5, CSS3, Javascript, Bootstrap, React.js
 Backend: Node.js, Express.js, PostgreSQL
 
 ## Screenshots
-<img src="https://github.com/jgharris314/Periodic-Tables" />
+<img src="https://github.com/jgharris314/Periodic-Tables/blob/main/readme-screenshots/us-01-submit-after.png" alt="dashboardImage" title="dashboardImage" width="600"/>&nbsp;
+<img src="https://github.com/jgharris314/Periodic-Tables/blob/main/readme-screenshots/us-01-submit-before.png" alt="newReservation" title="newReservationImage" width="600"/>&nbsp;
+
+<img src="https://github.com/jgharris314/Periodic-Tables/blob/main/readme-screenshots/us-07-search-reservations-submit-valid-after.png" alt="searchImage" title="searchImage" width="600"/>&nbsp;
 
 ## API
 
