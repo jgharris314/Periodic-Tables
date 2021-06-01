@@ -3,6 +3,7 @@ import ErrorAlert from "../layout/ErrorAlert";
 import { useHistory } from "react-router-dom";
 import { createTable } from "../utils/api";
 import { today } from "../utils/date-time";
+import './newTable.css'
 /**
  * Defines the NewTable page.
  * @param
@@ -61,15 +62,15 @@ export default function NewTable() {
 
   return (
     <div className="container">
-      <div className="card">
-        <div className="card-body">
+      <div className="card newTableCard">
+        <div className="card-body newTableCardBody">
           <h3>Create a new Table</h3>
 
-          <div className="row">
+         
             <form onSubmit={handleSubmit}>
               {errorsJSX()}
 
-              <ul className="list-group-flush">
+              <ul className="list-group-flush newTableList">
                 <li className="list-group-item">
                   <label htmlFor="table_name">
                     Table Name{" "}
@@ -102,7 +103,7 @@ export default function NewTable() {
               <button type="submit" className="btn btn-primary">Submit</button>
               <button onClick={handleCancel} className="btn btn-danger">Cancel</button>
             </form>
-          </div>
+          
         </div>
       </div>
     </div>

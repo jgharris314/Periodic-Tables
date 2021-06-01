@@ -1,0 +1,28 @@
+.newSearchCard {
+    margin-top: 160px;
+    background-color: #393a44;
+    min-width: 100%;
+   margin-bottom: 600px;
+}
+
+.newSearchCardBody {
+    background-color: #393a44;
+}
+
+.newSearchCardBody h3 {
+    color: white;
+    text-align: center;
+}
+
+.newSearchList {
+    background-color: #393a44;
+}
+
+.newSearchList li  {
+    background-color: #393a44;
+    color: white;
+}
+
+.searchButtons {
+    margin-bottom: 15px;
+}

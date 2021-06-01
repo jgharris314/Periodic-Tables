@@ -1,0 +1,26 @@
+.newReservationCard {
+    margin-top: 160px;
+    background-color: #393a44;
+    min-width: 100%;
+    
+    margin-bottom: 600px;
+}
+
+.newReservationCardBody {
+    background-color: #393a44;
+    
+}
+
+.newReservationCardBody h3 {
+    color: white;
+    text-align: center;
+}
+
+.newReservationList {
+    background-color: #393a44;
+}
+
+.newReservationList li  {
+    background-color: #393a44;
+    color: white;
+}

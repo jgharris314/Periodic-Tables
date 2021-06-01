@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import {listReservations} from "../utils/api"
 import DashboardItem from "../DashboardItem/DashboardItem"
 import ErrorAlert from "../layout/ErrorAlert"
+import './search.css'
+
 /**
  * Defines the Search page.
  * @param
@@ -51,13 +53,13 @@ export default function Search() {
   };
   return (
     <div className="container">
-      <div className="card">
-        <div className="card-body">
+      <div className="card newSearchCard">
+        <div className="card-body newSearchCardBody">
         <h3>Search</h3>
       
       
         <form onSubmit={handleSubmit}>
-          <ul className="list-group-flush">
+          <ul className="list-group-flush newSearchList">
             <li className="list-group-item">
           <label htmlFor="mobile_number">
             Mobile Number:{" "}
@@ -72,7 +74,7 @@ export default function Search() {
           </label>
           </li>
           </ul>
-          <div className="row">
+          <div className="searchButtons">
             <button type="submit" className="btn btn-primary">Find</button>
             <button onClick={handleCancel} className="btn btn-danger">Cancel</button>
           </div>

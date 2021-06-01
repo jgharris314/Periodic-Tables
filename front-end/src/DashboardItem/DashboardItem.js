@@ -42,9 +42,9 @@ export default function DashboardItem({
                 status,
                 reservation_id,
               }) => (
-                <div className="col col-4" key={reservation_id}>
+                <div className="col col-12" key={reservation_id}>
                   <div className="card dashboardItem">
-                  <div className="card-body">
+                  <div className="card-body dashboardItemCardBody">
                   <p>FirstName: {first_name}</p>
                   <p>Last Name: {last_name}</p>
                   <p>Seats: {people}</p>
@@ -54,8 +54,8 @@ export default function DashboardItem({
                     Status: {status}{" "}
                   </p>
                   {status === "booked" ? (
-                    <div>
-                      <a href={`/reservations/${reservation_id}/seat`} className="btn btn-primary">
+                    <div className="dashboardItemButtons">
+                      <a href={`/reservations/${reservation_id}/seat`} className="btn btn-primary mb-auto">
                         Seat
                       </a>
                       <a href={`/reservations/${reservation_id}/edit`} className="btn btn-secondary">
@@ -68,8 +68,9 @@ export default function DashboardItem({
                       >
                         Cancel
                       </button>
-                    </div>
+                   </div>
                   ) : (
+                    <div className="dashboardItemButtons">
                     <button
                       onClick={() => handleCancel(reservation_id)}
                       data-reservation-id-cancel={reservation_id}
@@ -77,6 +78,7 @@ export default function DashboardItem({
                     >
                       Cancel
                     </button>
+                    </div>
                   )}
                   </div>
                 </div>
@@ -106,7 +108,7 @@ export default function DashboardItem({
                 reservation_id,
                 reservation_date
               }) => (
-                <div className="col col-4" key={reservation_id}>
+                <div className="col col-12" key={reservation_id}>
                   <div className="card dashboardItem">
                   <div className="card-body">
                   <p>FirstName: {first_name}</p>
@@ -119,7 +121,7 @@ export default function DashboardItem({
                     Status: {status}{" "}
                   </p>
                   {status === "booked" ? (
-                    <div>
+                    <div className="card-body">
                       <a href={`/reservations/${reservation_id}/seat`} className="btn btn-primary">
                         Seat
                       </a>

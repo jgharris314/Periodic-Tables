@@ -1,11 +1,56 @@
 .dashboard {
     background-color: #393a44;
+    text-align: left;
+    min-width: 100%;
 }
 
 .dashboardHeader {
-    background-color: chocolate;
+    background-color: #393a44;
+    margin-bottom: 0;
+    text-align: center;
 }
 
+.dashboardHeader h1 {
+    color: white;
+}
+
+
 .dashboardSecondary {
-    background-color: cyan;
+    background-color: #393a44;
+    min-width: 150px;
+    margin-top: 0;
+    text-align: center;
+}
+
+.dashboardSecondary h2 {
+    font-size: 20px;
+    color: white;
+}
+
+.dashboardList {
+    margin-top: 385px;
+}
+
+.tableListSection {
+    bottom: 0px;
+    margin-bottom: 150px;
+}
+
+.tableListSection h2 {
+    color: white;
+    text-align: center;
+}
+
+.dashboardSection {
+    margin-top: 160px;
+    position: fixed;
+    top: 0px;
+    z-index: 999;
+    background-color: #393a44;
+    min-width: 100%;
+}
+
+.dashboardButtons {
+    min-width: 250px;
+    text-align: center;
 }

@@ -3,6 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 import ErrorAlert from "../layout/ErrorAlert";
 import { createReservation, getReservationById, updateReservation } from "../utils/api";
 import formatReservationDate from "../utils/format-reservation-date";
+import './newReservation.css'
 /**
  * Defines the NewReservation page.
  * @param
@@ -151,20 +152,20 @@ export default function NewReservation({refreshReservations, loadReservations}) 
     ));
   };
   return (
-    <div className="container">
+    <div className="container newReservationContainer">
       
-      <div className="card">
-      <div className="card-body">
+      <div className="card newReservationCard">
+      <div className="card-body newReservationCardBody">
         <h3>Create a new Reservation</h3>
       
       
         <form onSubmit={handleSubmit}>
           {errorsJSX()}
-          <ul className="list-group list-group-flush">
+          <ul className="list-group list-group-flush newReservationList">
           <li className="list-group-item">
             <label htmlFor="first_name">
               First Name:{" "}
-              <input className="list-group-item"
+              <input className=""
                 id="first_name"
                 type="text"
                 name="first_name"
@@ -176,8 +177,8 @@ export default function NewReservation({refreshReservations, loadReservations}) 
           </li>
           <li className="list-group-item">
             <label htmlFor="last_name">
-              Last Name:
-              <input className="list-group-item"
+              Last Name:{" "}
+              <input className=""
                 id="last_name"
                 type="text"
                 name="last_name"
@@ -189,8 +190,8 @@ export default function NewReservation({refreshReservations, loadReservations}) 
           </li>
           <li className="list-group-item">
             <label htmlFor="mobile_number">
-              Mobile Number:
-              <input className="list-group-item"
+              Mobile Number:{" "}
+              <input className=""
                 id="mobile_number"
                 type="tel"
                 placeholder="012-345-6789"
@@ -203,8 +204,8 @@ export default function NewReservation({refreshReservations, loadReservations}) 
           </li>
           <li className="list-group-item">
             <label htmlFor="reservation_date">
-              Reservation Date
-              <input className="list-group-item"
+              Reservation Date{" "}
+              <input className=""
                 id="reservation_date"
                 type="date"
                 placeholder="YYYY-MM-DD"
@@ -218,8 +219,8 @@ export default function NewReservation({refreshReservations, loadReservations}) 
           </li>
           <li className="list-group-item">
             <label htmlFor="reservation_time">
-              Reservation Time
-              <input className="list-group-item"
+              Reservation Time{" "}
+              <input className=""
                 id="reservation_time"
                 type="time"
                 placeholder="HH:MM"
@@ -233,8 +234,8 @@ export default function NewReservation({refreshReservations, loadReservations}) 
           </li>
           <li className="list-group-item">
             <label htmlFor="people">
-              Number of People
-              <input className="list-group-item"
+              Number of People{" "}
+              <input className=""
                 id="people"
                 type="number"
                 name="people"

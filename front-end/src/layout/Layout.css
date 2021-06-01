@@ -1,5 +1,15 @@
 .side-bar {
   background-color: #393a44;
-  max-width: 250px;
-  max-height: 250px;
+  min-height: 160px;
+  max-height: 160px;
+  min-width: 100%;
+  position:fixed;
+  top:0px;
+  z-index: 999;
+  color: white;
+}
+
+.layout {
+  background-color: #393a44;
+  height: 100%;
 }

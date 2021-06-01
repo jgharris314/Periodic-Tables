@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import DashboardItem from "../DashboardItem/DashboardItem";
 import { useHistory } from "react-router-dom";
 import { today, previous, next } from "../utils/date-time";
@@ -22,16 +22,17 @@ function Dashboard({
   const history = useHistory();
 
   return (
-    <div className="container dashboard">
-      <main>
-        <div className="row d-md-flex mb-3">
-          <h1 className="dashboardHeader">Dashboard</h1>
+    <div className="dashboard">
+    <main className="container-fluid">
+      <div className="dashboardSection">
+        <div className="d-md-flex mb-3 justify-content-center dashboardHeader">
+          <h1 className="">Dashboard</h1>
         </div>
 
-        <div className="row d-md-flex mb-3">
-          <h4 className="mb-0 dashboardSecondary">Reservations for date {date}</h4>
+        <div className="d-md-flex mb-3 justify-content-center dashboardSecondary">
+          <h2 className="mb-0 ">Reservations for date {date}</h2>
         </div>
-        <div className="row">
+        <div className="d-md-flex mb-3 justify-content-center dashboardButtons ">
           <button
             onClick={() => history.push(`/dashboard?date=${previous(date)}`)}
             className="btn btn-secondary"
@@ -49,18 +50,22 @@ function Dashboard({
             Next
           </button>
         </div>
+        </div>
         {/* <ErrorAlert error={reservationsError} /> */}
-        <div className="row">
+        <div className="dashboardList">
+         
           <DashboardItem date={date} reservations={reservations} refreshReservations={refreshReservations}/>
         </div>
-        <div className="row">
+        <div className="tableListSection">
+          <h2>Tables</h2>
           <TableList
             tables={tables}
             loadTables={loadTables}
             refreshReservations={refreshReservations}
           />
         </div>
-      </main>
+      
+    </main>
     </div>
   );
 }

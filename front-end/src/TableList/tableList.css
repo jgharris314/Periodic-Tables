@@ -1,6 +1,23 @@
 .tableList {
-    background-color: chartreuse;
-    min-width: 150px;
+    background-color: #693a7c;
+    min-width: 140px;
+    border-style: none;
+}
+
+
+.tableListCol {
+    background-color: #693a7c;
+    border-style:groove;
+}
+
+.tableCardBody {
+    background-color: #693a7c;
     border-radius: 5%;
     border-style: none;
+    color: white;
+}
+
+.tableList p {
+    margin-top: 3px;
+    margin-bottom: 3px;
 }

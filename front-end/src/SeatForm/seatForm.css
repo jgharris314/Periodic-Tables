@@ -1,0 +1,24 @@
+.seatFormCard {
+    margin-top: 160px;
+    background-color: #393a44;
+    min-width: 100%;
+   margin-bottom: 800px;
+}
+
+.seatFormCardBody {
+    background-color: #393a44;
+}
+
+.seatFormCardBody h3 {
+    color: white;
+    text-align: center;
+}
+
+.seatFormList {
+    background-color: #393a44;
+}
+
+.seatFormList li  {
+    background-color: #393a44;
+    color: white;
+}

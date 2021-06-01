@@ -1,0 +1,24 @@
+.newTableCard {
+    margin-top: 160px;
+    background-color: #393a44;
+    min-width: 100%;
+    margin-bottom: 600px;
+}
+
+.newTableCardBody {
+    background-color: #393a44;
+}
+
+.newTableCardBody h3 {
+    color: white;
+    text-align: center;
+}
+
+.newTableList {
+    background-color: #393a44;
+}
+
+.newTableList li  {
+    background-color: #393a44;
+    color: white;
+}

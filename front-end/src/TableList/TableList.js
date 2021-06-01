@@ -19,11 +19,11 @@ export default function TableList({ tables, loadTables, refreshReservations }) {
 
   return (
     <div className="container">
-       <div className="row mx-5"> 
+       <div className="row"> 
       {tables.map((e) => (
-        <div className="col col-4 tableList" key={e.table_id}>
+        <div className="col col-6 tableListCol" key={e.table_id}>
         <div className="card tableList">
-          <div className="card-body">
+          <div className="card-body tableCardBody">
           <p>Table Name {e.table_name}</p> 
           <p>Capacity {e.capacity}</p>
           <p data-table-id-status={e.table_id}>{e.reservation_id ? "Occupied" : "Free"}</p>

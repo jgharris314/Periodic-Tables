@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ErrorAlert from "../layout/ErrorAlert";
 import { useHistory, useParams } from "react-router-dom";
 import { getReservationById, seatReservation } from "../utils/api";
-
+import './seatForm.css'
 import formatReservationDate from "../utils/format-reservation-date";
 
 export default function SeatForm({
@@ -74,14 +74,14 @@ export default function SeatForm({
 
   return (
     <div className = "conainer">
-      <div className="card">
-        <div className="card-body">
+      <div className="card seatFormCard">
+        <div className="card-body seatFormCardBody">
       <h3>
         Choose a table for Party: {reservationState.last_name} People:{" "}
         {reservationState.people}
       </h3>
       
-      <div className="row">
+      
       {validationErrors.map((valError, index) => (
         <ErrorAlert key={index} error={valError} />
       ))}
@@ -107,7 +107,7 @@ export default function SeatForm({
         <button onClick={handleCancel}>Cancel</button>
         
       </form>
-      </div>
+      
       </div>
       </div>
       <ErrorAlert error={error} />
