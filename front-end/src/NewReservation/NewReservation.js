@@ -49,7 +49,7 @@ export default function NewReservation({refreshReservations, loadReservations}) 
       setFormData({
         ...initialFormData
       });
-    }
+    }// eslint-disable-next-line
   }, [reservation_id]);
 
   function validDate() {
